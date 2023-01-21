@@ -1,6 +1,6 @@
+import stream from 'node:stream';
 import WebSocket, { WebSocketServer, createWebSocketStream } from 'ws';
 import * as commands from './commands';
-import stream from 'node:stream';
 
 /**
  * Creates a duplex stream from the web socket
@@ -27,13 +27,13 @@ export const run = (port: number): void => {
             commands
                 .execute(message)
                 .then((answer) => {
-
                     if (answer) {
                         console.log('->', answer);
                         duplex.write(answer);
-                    } else {
-                        console.log(`silently done '${message}'`);
                     }
+                })
+                .catch((e) => {
+                    console.log(`failed to execute '${message}',`, e.message);
                 });
         }
     });
