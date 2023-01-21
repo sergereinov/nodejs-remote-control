@@ -1,22 +1,21 @@
 {
-    "name": "ws_task",
+    "name": "nodejs-remote-control",
     "version": "1.0.0",
-    "description": "Template for the WebSocket remote control task",
-    "main": "index.js",
-    "type": "module",
-    "scripts": {
-        "start": "node ./index.js",
-        "start:dev": "nodemon ./index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+    "description": "Educational project for rs.school (NodeJS)",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sergereinov/nodejs-remote-control.git"
     },
-    "author": "Andrei Auchynnikau",
-    "keywords": [],
-    "license": "ISC",
+    "scripts": {
+        "start": "ts-node ./src/index.ts",
+        "start:dev": "nodemon ./src/index.ts"
+    },
     "devDependencies": {
         "nodemon": "^2.0.16"
     },
     "dependencies": {
         "@nut-tree/nut-js": "^2.3.0",
-        "ws": "^8.8.0"
+        "ts-node": "^10.9.1",
+        "ws": "^8.12.0"
     }
 }
