@@ -11,7 +11,7 @@ export const getPartOfScreen: Action = async () => {
         centerY - side / 2,
         side,
         side
-    ));
+    )).then((img) => img.toRGB());
 
     const width = img.width / img.pixelDensity.scaleX
     const height = img.height / img.pixelDensity.scaleY;
