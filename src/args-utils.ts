@@ -1,4 +1,4 @@
-import { errorInvalidArgument } from "./errors";
+import { errorInvalidArgument } from './errors';
 
 export const parseInputNumbers = (expectNumbersCount: number, input: string[]): number[] => {
     if (input.length !== expectNumbersCount) {

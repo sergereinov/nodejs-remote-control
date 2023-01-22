@@ -1,4 +1,4 @@
-import * as nutjs from "@nut-tree/nut-js";
+import * as nutjs from '@nut-tree/nut-js';
 import { Action } from './action';
 import { parseInputNumbers } from './args-utils';
 
