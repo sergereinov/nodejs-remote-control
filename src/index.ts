@@ -5,7 +5,7 @@ import * as ctrl_c from './ctrl-c';
 const HTTP_PORT = 8181;
 const WS_PORT = 8080;
 
-console.log('Start static http server on the', HTTP_PORT, 'port!');
+console.log(`Start static http server at `, { host: `http://localhost:${HTTP_PORT}` });
 const httpServer = HttpServer.listen(HTTP_PORT);
 
 console.log('Start websocket server on the', WS_PORT, 'port!');
@@ -29,9 +29,11 @@ ctrl_c.setHandler(() => {
 
     //initiate closing all clients
     wsServer.clients.forEach((ws) => {
-        const addr = ws['_socket']?.remoteAddress;
-        const port = ws['_socket']?.remotePort;
-        console.log(' * closing ws-client, remote:', { host: addr, port: port });
+        const peer = {
+            remote_host: ws['_socket']?.remoteAddress,
+            remote_port: ws['_socket']?.remotePort
+        };
+        console.log(' ! closing ws-client', peer);
         ws.close();
     });
 });

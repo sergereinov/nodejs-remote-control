@@ -19,10 +19,15 @@ const createTextWebSocketStream = (websocket: WebSocket.WebSocket, options?: str
 export const run = (port: number): WebSocket.Server<WebSocket.WebSocket> =>
     new WebSocketServer({ port: port, clientTracking: true })
         .on('connection', async (ws, req) => {
-            
-            const addr = req.socket.remoteAddress;
-            const port = req.socket.remotePort;
-            console.log('connected ws-client, remote:', { host: addr, port: port });
+
+            const peer = {
+                remote_host: req.socket.remoteAddress,
+                remote_port: req.socket.remotePort
+            };
+
+            console.log(' * ws-client connected', peer);
+
+            ws.on('close', () => console.log(' * ws-client closed', peer));
 
             const duplex = createTextWebSocketStream(ws);
 
