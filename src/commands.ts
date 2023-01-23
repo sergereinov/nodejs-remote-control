@@ -2,6 +2,7 @@ import { Action } from './action';
 import * as mouse from './mouse';
 import * as figures from './figures';
 import * as printScreen from './print-screen';
+import { errorUnknownCommand } from './errors';
 
 /**
  * Executes the input command
@@ -14,7 +15,7 @@ export const execute = async (input: string): Promise<string | null> => {
         const action = commands[cmd];
         return action(args);
     }
-    return null;
+    throw errorUnknownCommand(`'${cmd}'`);
 }
 
 const commands: { [key: string]: Action; } = {
