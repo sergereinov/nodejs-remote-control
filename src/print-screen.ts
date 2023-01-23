@@ -6,11 +6,21 @@ export const getPartOfScreen: Action = async () => {
     const { x: centerX, y: centerY } = await nutjs.mouse.getPosition();
     const side = 200;
 
+    const screenWidth = await nutjs.screen.width();
+    const screenHeight = await nutjs.screen.height();
+
+    let left = Math.max(centerX - side / 2, 0);
+    let top = Math.max(centerY - side / 2, 0);
+    const right = Math.min(left + side, screenWidth);
+    const bottom = Math.min(top + side, screenHeight);
+    left = Math.max(right - side, 0);
+    top = Math.max(bottom - side, 0);
+
     const img = await nutjs.screen.grabRegion(new nutjs.Region(
-        centerX - side / 2,
-        centerY - side / 2,
-        side,
-        side
+        left,
+        top,
+        right - left,
+        bottom - top
     )).then((img) => img.toRGB());
 
     const width = img.width / img.pixelDensity.scaleX
