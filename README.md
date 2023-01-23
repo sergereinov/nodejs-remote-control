@@ -16,8 +16,6 @@ Time limits: start `2023-01-17 03:00` end `2023-01-24 03:00` (UTC+3)
 
 Prerequisites:
 * nodejs 18 LTS
-* npm
-* typescript
 * git
 
 How to install:
